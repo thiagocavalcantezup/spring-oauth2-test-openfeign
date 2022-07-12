@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringOauth2TestOpenfeignApplication<spring-oauth2-test-openfeign>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.zup.handora.springoauth2testopenfeign.SpringOauth2TestOpenfeignApplication",
+      "projectName": "spring-oauth2-test-openfeign",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
