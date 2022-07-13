@@ -8,9 +8,16 @@ spring:
             client-id: cli-cred-client
             client-secret: wqXKbLI0KE8yMAHr2wcafZzyOaPCfdP5
             scope: contatos:read
+          gestao-funcionarios:
+            authorization-grant-type: client_credentials
+            client-id: realocacao-squad-client
+            client-secret: 7GQb6X8Gqt7EtNpYg8INbhGFgJG2WE3Y
+            scope: funcionarios:read
         provider:
           meus-contatos:
             token-uri: http://localhost:18080/realms/meus-contatos/protocol/openid-connect/token
+          gestao-funcionarios:
+            token-uri: http://localhost:18080/realms/gestao-funcionarios/protocol/openid-connect/token
 
 server:
   port: 8082
@@ -21,9 +28,12 @@ logging:
   level:
     '[org.springframework.web.client]': DEBUG
     '[br.com.zup.handora.springoauth2testopenfeign.meuscontatos]': DEBUG
+    '[br.com.zup.handora.springoauth2testopenfeign.gestaofuncionarios]': DEBUG
 
 feign:
   client:
     config:
       meusContatos:
+        loggerLevel: full
+      gestaoFuncionarios:
         loggerLevel: full
