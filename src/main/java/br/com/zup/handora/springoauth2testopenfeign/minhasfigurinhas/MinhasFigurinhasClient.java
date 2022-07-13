@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.zup.handora.springoauth2testopenfeign.configs.OAuth2FeignRequestInterceptor;
 
+@Validated
 @FeignClient(name = "minhasFigurinhas", url = MinhasFigurinhasClient.BASE_URI, configuration = MinhasFigurinhasClient.Config.class)
 public interface MinhasFigurinhasClient {
 
