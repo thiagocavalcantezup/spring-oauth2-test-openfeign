@@ -1,5 +1,7 @@
 package br.com.zup.handora.springoauth2testopenfeign.livraria;
 
+import java.util.Optional;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
@@ -14,10 +16,10 @@ public interface LivrariaClient {
     public final static String BASE_URI = "http://localhost:8080/oauth2-resourceserver-livraria/api";
 
     @GetMapping("/livros/{livroId}")
-    public DetalhesDoLivroResponse detalharLivro(@PathVariable Long livroId);
+    public Optional<DetalhesDoLivroResponse> detalharLivro(@PathVariable Long livroId);
 
     @GetMapping("/autores/{autorId}")
-    public DetalhesDoAutorResponse detalharAutor(@PathVariable Long autorId);
+    public Optional<DetalhesDoAutorResponse> detalharAutor(@PathVariable Long autorId);
 
     class Config {
 

@@ -30,7 +30,9 @@ public class ClientSecurityConfig {
                 .requestCache().disable()
                 .headers().frameOptions().deny()
             .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+                .authorizeRequests().anyRequest().permitAll();
         // @formatter:on
 
         return http.build();

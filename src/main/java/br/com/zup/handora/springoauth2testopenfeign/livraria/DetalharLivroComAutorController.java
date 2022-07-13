@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import feign.FeignException;
-
 @RestController
 @RequestMapping(DetalharLivroComAutorController.BASE_URI)
 public class DetalharLivroComAutorController {
@@ -25,17 +23,13 @@ public class DetalharLivroComAutorController {
 
     @GetMapping("/livros/{livroId}")
     public ResponseEntity<?> detalharLivroComAutor(@PathVariable Long livroId) {
-        DetalhesDoLivroResponse detalhesDoLivroResponse;
-
-        try {
-            detalhesDoLivroResponse = livrariaClient.detalharLivro(livroId);
-        } catch (FeignException.NotFound e) {
-            throw new ResponseStatusException(NOT_FOUND, "Livro não encontrado");
-        }
+        DetalhesDoLivroResponse detalhesDoLivroResponse = livrariaClient.detalharLivro(
+            livroId
+        ).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Livro não encontrado"));
 
         DetalhesDoAutorResponse detalhesDoAutorResponse = livrariaClient.detalharAutor(
             detalhesDoLivroResponse.getAutorId()
-        );
+        ).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Autor não encontrado"));
 
         return ResponseEntity.ok(
             new DetalhesDoLivroComAutorResponse(detalhesDoLivroResponse, detalhesDoAutorResponse)

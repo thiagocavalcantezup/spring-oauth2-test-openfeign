@@ -25,11 +25,17 @@ spring:
             token-uri: http://localhost:18080/realms/gestao-funcionarios/protocol/openid-connect/token
           livraria:
             token-uri: http://localhost:18080/realms/livraria/protocol/openid-connect/token
+  output:
+    ansi:
+      enabled: ALWAYS
 
 server:
   port: 8082
   error:
     include-message: always
+    include-exception: false
+    include-stacktrace: on-param
+    include-binding-errors: always
 
 logging:
   level:
@@ -47,3 +53,4 @@ feign:
         loggerLevel: full
       livraria:
         loggerLevel: full
+        decode404: true
