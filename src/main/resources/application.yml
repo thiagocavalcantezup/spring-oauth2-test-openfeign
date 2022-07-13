@@ -18,6 +18,11 @@ spring:
             client-id: exposicao-livros-client
             client-secret: wEcSpxbQj2cjTt8q6Od6uQzV8LbxPEPH
             scope: [livros:read, autores:read]
+          minhas-figurinhas:
+            authorization-grant-type: client_credentials
+            client-id: albuns-freemium-client
+            client-secret: jKnVQiRkNOVkbS564zGCxzYGGBParedg
+            scope: [albuns:read, albuns:write]
         provider:
           meus-contatos:
             token-uri: http://localhost:18080/realms/meus-contatos/protocol/openid-connect/token
@@ -25,6 +30,8 @@ spring:
             token-uri: http://localhost:18080/realms/gestao-funcionarios/protocol/openid-connect/token
           livraria:
             token-uri: http://localhost:18080/realms/livraria/protocol/openid-connect/token
+          minhas-figurinhas:
+            token-uri: http://localhost:18080/realms/minhas-figurinhas/protocol/openid-connect/token
   output:
     ansi:
       enabled: ALWAYS
@@ -43,6 +50,7 @@ logging:
     '[br.com.zup.handora.springoauth2testopenfeign.meuscontatos]': DEBUG
     '[br.com.zup.handora.springoauth2testopenfeign.gestaofuncionarios]': DEBUG
     '[br.com.zup.handora.springoauth2testopenfeign.livraria]': DEBUG
+    '[br.com.zup.handora.springoauth2testopenfeign.minhasfigurinhas]': DEBUG
 
 feign:
   client:
@@ -52,5 +60,8 @@ feign:
       gestaoFuncionarios:
         loggerLevel: full
       livraria:
+        loggerLevel: full
+        decode404: true
+      minhasFigurinhas:
         loggerLevel: full
         decode404: true
